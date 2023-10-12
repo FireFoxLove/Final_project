@@ -1,0 +1,20 @@
+Задание 1
+Проверка отображения созданного заказа в базе данных.
+
+SELECT c.login, count(o."inDelivery") FROM "Couriers" AS c
+	JOIN "Orders" AS o ON c.id = o."courierId"
+	WHERE o."inDelivery" = 'true'
+GROUP BY c.login;
+
+
+
+Задание 2
+Тестирование статусов заказов.
+
+SELECT track,  CASE
+	WHEN "inDelivery" = 'true' THEN '1'
+	WHEN finished = 'true' THEN '2'
+	WHEN cancelled = 'true' THEN '-1'
+	ELSE '0'
+	END as status
+FROM "Orders";
